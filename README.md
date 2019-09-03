@@ -492,17 +492,16 @@ true
 
 Crie uma função **depositar** que receba um valor de ether e um endereço e realize a transferência para o endereço:
 
-```java
+```bash
 
-/ Goibinha, não esqueça de:               \
-| senhapersonal.unlockAccount(eth.account |
-\ s[1],'123')                             /
- -----------------------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
+#/ Goibinha, libere sempre a origem:   \
+#| personal.unlockAccount(origem,'123') /
+#\-------------------------------------/
+#        \   ^__^
+#         \  (oo)\_______
+#            (__)\       )\/\
+#                ||----w |
+#                ||     ||
 
 
 > function depositar (valor, origem, destino) {
