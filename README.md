@@ -493,28 +493,33 @@ true
 Crie uma função **depositar** que receba um valor de ether e um endereço e realize a transferência para o endereço:
 
 ```java
-> function depositar (valor, endereco) {
-eth.sendTransaction({from:endereco,to:eth.accounts[1], value:web3.toWei(valor)});
+
+/ Goibinha, não esqueça de:               \
+| senhapersonal.unlockAccount(eth.account |
+\ s[1],'123')                             /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+
+> function depositar (valor, origem, destino) {
+eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor)});
+console.log(web3.fromWei(eth.getBalance(destino).toString(),"ether"));
 };	
 
-> depositar(1,eth.accounts[0])
-
-> checkAllBalances()
-eth.accounts[0]:	0xd35e2981d39ee92fa87488ae7cb642ddc706b65f	balance:115792089237316195423570985008687907853269984665640564039455.584007913129639927ether
-eth.accounts[1]:	0x20d30daabbd46caa89a7115882acb65c50b4e879	balance:2ether
-Total balance: 1.157920892373162e+59ether
+> depositar(1,eth.accounts[0], eth.accounts[1])
+6
 undefined
-
-> depositar(1,eth.accounts[0])
+> depositar(1,eth.accounts[0], eth.accounts[1])
+8
 undefined
-
-> checkAllBalances()
-eth.accounts[0]:	0xd35e2981d39ee92fa87488ae7cb642ddc706b65f	balance:115792089237316195423570985008687907853269984665640564039454.584007913129639927ether
-eth.accounts[1]:	0x20d30daabbd46caa89a7115882acb65c50b4e879	balance:3ether
-Total balance: 1.157920892373162e+59ether
+> depositar(1,eth.accounts[0], eth.accounts[1])
+9
 undefined
-
-> depositar(1,eth.accounts[0])
+> depositar(1,eth.accounts[1], eth.accounts[0])
 
 ```
 
