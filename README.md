@@ -494,7 +494,7 @@ Crie uma função **depositar** que receba um valor de ether e um endereço e re
 
 ```bash
 
-#/ Goibinha, libere sempre a origem:   \
+#/ Goiabinha, libere sempre a origem:  \
 #| personal.unlockAccount(origem,'123') /
 #\-------------------------------------/
 #        \   ^__^
