@@ -1,7 +1,5 @@
-# cowsay-ether
+# cowsay-ether -  Ethereum Fundamentals - hands on
 FIAP - Ethereum Fundamentals
-
-# Ethereum Fundamentals - hands on
 
 	< Aula: ETHEREUM FUNDAMENTALS -
 	 Prof. GLAUBER DUARTE MONTEIRO >
@@ -16,6 +14,7 @@ FIAP - Ethereum Fundamentals
 ## Slides
 
 * Aula do dia 29/08/2019 - Slides no Portal do Aluno FIAP
+* Aula do dia 03/09/2019 - Slides no Portal do Aluno FIAP
 	 
 
 ##  Importante
@@ -521,6 +520,7 @@ undefined
 > depositar(1,eth.accounts[1], eth.accounts[0])
 
 ```
+
 
 
 
