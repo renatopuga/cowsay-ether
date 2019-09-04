@@ -32,7 +32,7 @@ sudo apt install cowsay fortune
 sudo apt install tree
 
 # install htop
-sudo apt install tree
+sudo apt install htop
 ```
 
 ## install go
