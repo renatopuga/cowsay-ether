@@ -750,7 +750,7 @@ undefined
 
 ```
 
-## Gash - Rede Teste 2
+## Geth - Rede Teste 2
 Faça a transação  alterando o gas e gasPrice.
 
 
