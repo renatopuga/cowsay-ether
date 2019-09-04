@@ -521,6 +521,303 @@ undefined
 
 ```
 
+## Fechar os geth tudo
+
+Agora vamos excecutar o comando `geth` com a opção `--testenet`. 
+Aqui vamos ter o mais próximo do real de mantagem de blocos.
+
+```bash
+# voltando para o home
+cd 
+
+# rodando o geth com a opcao --testnet
+geth --testnet
+
+WARN [09-03|20:55:27.746] Sanitizing cache to Go's GC limits       provided=1024 updated=1000
+INFO [09-03|20:55:27.747] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [09-03|20:55:27.748] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [09-03|20:55:27.749] Starting peer-to-peer node               instance=Geth/v1.9.3-unstable/linux-amd64/go1.12.7
+INFO [09-03|20:55:27.751] Allocated trie memory caches             clean=250.00MiB dirty=250.00MiB
+INFO [09-03|20:55:27.751] Allocated cache and file handles         database=/home/ethereum-fiap/.ethereum/testnet/geth/chaindata cache=500.00MiB handles=524288
+INFO [09-03|20:55:27.822] Opened ancient database                  database=/home/ethereum-fiap/.ethereum/testnet/geth/chaindata/ancient
+INFO [09-03|20:55:27.827] Persisted trie from memory database      nodes=355 size=50.67KiB time=616.761µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [09-03|20:55:27.830] Initialised chain configuration          config="{ChainID: 3 Homestead: 0 DAO: <nil> DAOSupport: true EIP150: 0 EIP155: 10 EIP158: 10 Byzantium: 1700000 Constantinople: 4230000 Petersburg: 4939394 Istanbul: <nil> Engine: ethash}"
+INFO [09-03|20:55:27.830] Disk storage enabled for ethash caches   dir=/home/ethereum-fiap/.ethereum/testnet/geth/ethash count=3
+INFO [09-03|20:55:27.830] Disk storage enabled for ethash DAGs     dir=/home/ethereum-fiap/.ethash count=2
+INFO [09-03|20:55:27.830] Initialising Ethereum protocol           versions=[63] network=3 dbversion=7
+INFO [09-03|20:55:27.882] Loaded most recent local header          number=0 hash=419410…ca4a2d td=1048576 age=50y4mo3w
+INFO [09-03|20:55:27.884] Loaded most recent local full block      number=0 hash=419410…ca4a2d td=1048576 age=50y4mo3w
+INFO [09-03|20:55:27.884] Loaded most recent local fast block      number=0 hash=419410…ca4a2d td=1048576 age=50y4mo3w
+INFO [09-03|20:55:27.884] Loaded local transaction journal         transactions=0 dropped=0
+INFO [09-03|20:55:27.890] Regenerated local transaction journal    transactions=0 accounts=0
+INFO [09-03|20:55:27.899] Allocated fast sync bloom                size=500.00MiB
+INFO [09-03|20:55:27.903] Initialized fast sync bloom              items=355 errorrate=0.000 elapsed=2.026ms
+INFO [09-03|20:55:27.933] New local node record                    seq=15 id=606ed001a2ff01f1 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [09-03|20:55:27.934] IPC endpoint opened                      url=/home/ethereum-fiap/.ethereum/testnet/geth.ipc
+INFO [09-03|20:55:27.940] Started P2P networking                   self=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@127.0.0.1:30303
+...
+# para parar digite Ctrl + C
+
+```
+
+### Os principais problemas quando nos aproximamos da Mainnet:
+
+* Tamanho (problemas no disco)
+*  Banda de Rede
+
+
+## Geth - Ropsten
+
+Abra um novo terminal e reinicie o geth. Aqui ele começa a ir atrás de nós P2P e conectar-se a rede pela porta UDP 30303. Se essa porta não estiver livre, não consegue se conectar em nenhum peer da rede.
+
+Mas da para sair por outro porta? Sim, você precisa mudar a porta!
+
+```bash
+geth --testnet --syncmode "light"
+
+INFO [09-03|21:00:15.189] Dropping default light client cache      provided=1024 updated=128
+INFO [09-03|21:00:15.190] Maximum peer count                       ETH=0 LES=100 total=50
+INFO [09-03|21:00:15.190] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [09-03|21:00:15.191] Starting peer-to-peer node               instance=Geth/v1.9.3-unstable/linux-amd64/go1.12.7
+INFO [09-03|21:00:15.191] Allocated cache and file handles         database=/home/ethereum-fiap/.ethereum/testnet/geth/lightchaindata cache=64.00MiB handles=524288
+INFO [09-03|21:00:15.239] Writing custom genesis block 
+INFO [09-03|21:00:15.246] Persisted trie from memory database      nodes=355 size=50.67KiB time=1.1499ms gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [09-03|21:00:15.247] Initialised chain configuration          config="{ChainID: 3 Homestead: 0 DAO: <nil> DAOSupport: true EIP150: 0 EIP155: 10 EIP158: 10 Byzantium: 1700000 Constantinople: 4230000 Petersburg: 4939394 Istanbul: <nil> Engine: ethash}"
+INFO [09-03|21:00:15.247] Disk storage enabled for ethash caches   dir=/home/ethereum-fiap/.ethereum/testnet/geth/ethash count=3
+INFO [09-03|21:00:15.247] Disk storage enabled for ethash DAGs     dir=/home/ethereum-fiap/.ethash count=2
+INFO [09-03|21:00:15.270] Added trusted checkpoint                 block=6160383 hash=7d6db6…d0b07d
+INFO [09-03|21:00:15.270] Loaded most recent local header          number=0 hash=419410…ca4a2d td=1048576 age=50y4mo3w
+INFO [09-03|21:00:15.270] Configured checkpoint registrar          address=0xEF79475013f154E6A65b54cB2742867791bf0B84 signers=5 threshold=2
+INFO [09-03|21:00:15.293] UDP listener up                          net=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@[::]:30303
+WARN [09-03|21:00:15.299] Light client mode is an experimental feature 
+INFO [09-03|21:00:15.301] IPC endpoint opened                      url=/home/ethereum-fiap/.ethereum/testnet/geth.ipc
+INFO [09-03|21:00:15.302] New local node record                    seq=19 id=606ed001a2ff01f1 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [09-03|21:00:15.302] Started P2P networking                   self=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@127.0.0.1:30303
+WARN [09-03|21:00:57.784] Verified advertised checkpoint           peer=a051b87c7195c2c1c263e975ac861f98f9633dc1de2c310d5ff9f2e909c72b14 signers=2
+INFO [09-03|21:00:57.784] Added trusted checkpoint                 block=6160383 hash=7d6db6…d0b07d
+INFO [09-03|21:00:58.030] Updated latest header based on CHT       number=6160383 hash=7d6db6…d0b07d age=3w3d22h
+INFO [09-03|21:00:58.030] Block synchronisation started 
+INFO [09-03|21:01:07.413] Imported new block headers               count=192 elapsed=3.089s number=6160575 hash=c8eb64…053aa9 age=3w3d21h
+INFO [09-03|21:01:08.706] Generating ethash verification cache     epoch=206 percentage=80 elapsed=3.058s
+INFO [09-03|21:01:09.446] Imported new block headers               count=192 elapsed=2.029s number=6160767 hash=9285bf…c7a920 age=3w3d21h
+INFO [09-03|21:01:09.690] Generated ethash verification cache      epoch=206 elapsed=4.042s
+INFO [09-03|21:01:14.246] Imported new block headers               count=960 elapsed=4.788s number=6161727 hash=4a97c3…5d6122 age=3w3d17h
+INFO [09-03|21:01:16.331] Imported new block headers               count=576 elapsed=2.076s number=6162303 hash=6aa000…735cca age=3w3d15h
+INFO [09-03|21:01:25.213] Imported new block headers               count=2048 elapsed=8.870s number=6164351 hash=b24de2…f8643e age=3w3d7h
+INFO [09-03|21:01:29.506] Imported new block headers               count=832  elapsed=4.270s number=6165183 hash=383545…7cff11 age=3w3d4h
+INFO [09-03|21:01:35.141] Imported new block headers               count=1344 elapsed=5.585s number=6166527 hash=03fcb4…a8cd0c age=3w2d23h
+INFO [09-03|21:01:43.418] Imported new block headers               count=2048 elapsed=8.259s number=6168575 hash=a9a057…00a50e age=3w2d16h
+
+# em outra aba execute
+# voltar para home
+cd
+
+# rodandno geth agora com testenet
+geth attach ~/.ethereum/testnet/geth.ipc 
+
+> admin.peers
+[{
+    caps: ["eth/63", "les/2", "les/3"],
+    enode: "enode://053d2f57829e5785d10697fa6c5333e4d98cc564dbadd87805fd4fedeb09cbcb642306e3a73bd4191b27f821fb442fcf964317d6a520b29651e7dd09d1beb0ec@79.98.29.154:30303",
+    id: "a051b87c7195c2c1c263e975ac861f98f9633dc1de2c310d5ff9f2e909c72b14",
+    name: "Geth/v1.9.3-stable-cfbb969d/linux-amd64/go1.11.5",
+    network: {
+      inbound: false,
+      localAddress: "10.0.2.15:33292",
+      remoteAddress: "79.98.29.154:30303",
+      static: true,
+      trusted: false
+    },
+    protocols: {
+      les: {
+        difficulty: 22666369940700870,
+        head: "19e1af0fe7abb57eb2fefbe9466263014dc7b1b3b719c31b835f1747458e7ccb",
+        version: 3
+      }
+    }
+}]
+```
+
+```bash
+ ___________________________
+< Estamos mesmo na Testnet? >
+ ---------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+Podemos verificar qual a altura do bloco com `eth.blockNumber`:
+
+```bash
+> eth.blockNumber
+6322813
+
+# verificando contas existentes
+> eth.accounts
+[]
+
+# criando uma conta nova na testnet
+>personal.newAccount('123')
+"0xb5ab638c6ffe0ebdd3edaea35724501d0764b776"
+
+# depois de enviar no MetaMask teste:
+> web3.fromWei(eth.getBalance(eth.accounts[0]))
+1
+```
+
+## Geth - Gerenciamento de Contas
+
+Vá até o MetaMask e copie a chave privada (PERIGO... PERIGO... PERGO).
+
+```bash
+# copiar a chave privada no MetaMask e copiar a chave privada e salvar no arquivo metamask.key
+geth account import --datadir ~/.ethereum/testnet metamask.key
+INFO [09-03|21:41:49.560] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [09-03|21:41:49.560] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Password: 
+Repeat password: 
+Address: {cd1f55318de39bd2e8d32a7a949ca4bb7c865c88}
+
+# listando as contas
+geth account list
+INFO [09-03|21:47:31.297] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [09-03|21:47:31.297] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+
+# listando as contas agora no datadir do testenet
+geth account list --datadir ~/.ethereum/testnet
+ethereum-fiap@ethereum-fiap:~$ geth account list --datadir ~/.ethereum/testnet
+INFO [09-03|21:47:43.095] Maximum peer count                       ETH=50 LES=0 total=50
+INFO [09-03|21:47:43.095] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+Account #0: {b5ab638c6ffe0ebdd3edaea35724501d0764b776} keystore:///home/ethereum-fiap/.ethereum/testnet/keystore/UTC--2019-09-04T00-18-49.337283662Z--b5ab638c6ffe0ebdd3edaea35724501d0764b776
+Account #1: {cd1f55318de39bd2e8d32a7a949ca4bb7c865c88} keystore:///home/ethereum-fiap/.ethereum/testnet/keystore/UTC--2019-09-04T00-41-52.425232849Z--cd1f55318de39bd2e8d32a7a949ca4bb7c865c88
+```
+
+```bash
+ _____________________________________
+/ Agora, vc que é bem Goiaba, apaga o \
+\ metamask.key!                       /
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+## Geth - Rede de Teste Prática
+Enviar um ether para o colequinha.
+
+*  Terminal Aba 1:
+
+```bash
+ geth --testnet --syncmode "light"
+```
+* Terminal Aba 2:
+
+```bash
+# geth neles
+geth attach ~/.ethereum/testnet/geth.ipc 
+
+# carregando a funcao depositar (poderia ter salvo no arquivo)
+> function depositar (valor, origem, destino) {
+eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor)});
+console.log(web3.fromWei(eth.getBalance(destino).toString(),"ether"));
+};	
+
+# unlock a continha
+> personal.unlockAccount("0xCd1f55318De39Bd2e8D32A7A949CA4Bb7c865c88",'123')
+true
+
+# depositar origem -> destino (retona o valor da destino)
+> depositar(0.032,"0xCd1f55318De39Bd2e8D32A7A949CA4Bb7c865c88","91296e454eaa17258b5f13ceb3ba7c863670f325")
+2.99958
+undefined
+```
+
+```bash
+/ No Gas no Gain! Se tiver 1 ether não \
+\ vai conseguir enviar maluco!         /
+ --------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+
+## Gash - Rede Teste 2
+Faça a transação  alterando o gas e gasPrice.
+
+
+### Mudando o valor de gas na função depo_gas_change()
+
+```bash
+function depo_gas_change (valor, origem, destino, gas) {
+eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor), gas:gas});
+console.log(web3.fromWei(eth.getBalance(destino).toString(),"ether"));
+};
+
+# unlock a continha
+> personal.unlockAccount(eth.accounts[1],'123')
+true
+
+# depositar origem -> destino (retona o valor da destino)
+> depo_gas_change(0.032,eth.accounts[1],eth.accounts[0],18000)
+Error: intrinsic gas too low
+    at web3.js:3143:20
+    at web3.js:6347:15
+    at web3.js:5081:36
+    at depo_gas_change (<anonymous>:2:1)
+    at <anonymous>:1:1
+
+> depo_gas_change(0.032,eth.accounts[1],eth.accounts[0],21000)
+1.032
+
+```
+
+### Mudando o valor de gas na função depo_gasPrice_change()
+
+```bash
+function depo_gasPrice_change (valor, origem, destino, gasprice) {
+eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor), gasPrice:web3.toWei(gasprice, "gwei")});
+console.log(web3.fromWei(eth.getBalance(destino).toString(),"ether"));
+};
+
+# unlock a continha
+> personal.unlockAccount(eth.accounts[1],'123')
+true
+
+# depositar origem -> destino (retona o valor da destino)
+> depo_gasPrice_change(0.032,eth.accounts[1],eth.accounts[0],0.0005)
+1.064
+```
+### Mudando o valor de Gas na função depo_gasPrice_nonce_change()
+
+```bash
+function depo_gasPrice_nonce_change (valor, origem, destino, gasprice, nonce) {
+eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor), gasPrice:web3.toWei(gasprice, "gwei"), nonce:nonce});
+console.log(web3.fromWei(eth.getBalance(destino).toString(),"ether"));
+};
+
+# unlock a continha
+> personal.unlockAccount(eth.accounts[1],'123')
+true
+
+# descobrir o nonce 
+> eth.getTransactionCount(eth.accounts[1])
+28
+
+# depositar origem -> destino (retona o valor da destino)
+> depo_gasPrice_nonce_change(0.032,eth.accounts[1],eth.accounts[0],0.0005,29)
+1.064
+```
+
+
 
 
 
