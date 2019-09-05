@@ -1,5 +1,9 @@
+
 # cowsay-ether -  Ethereum Fundamentals - hands on
 FIAP - Ethereum Fundamentals
+
+
+
 
 ```bash
 < Aula: ETHEREUM FUNDAMENTALS -
@@ -17,6 +21,7 @@ by Renato Puga
 
 * Aula do dia 29/08/2019 - Slides no Portal do Aluno FIAP
 * Aula do dia 03/09/2019 - Slides no Portal do Aluno FIAP
+* Aula do dia 05/09/2019 - Slides no Portal do Aluno FIAP
 	 
 
 ##  Importante
@@ -848,12 +853,105 @@ true
                 ||     ||
 
 ```
+## Geth - RPC
 
+Nesse modo a gente não se preocupa com o modo https (menos seguro), mas para acessar esses nodes nós precisamos pelo menos do domain e o rpc no bash não carrega por padrão as bibliotecas, por isso declaramos elas por `rpcapi` .
 
+```bash
+ _____________________________________________
+< Feche todos os consoles aberto, se existir! >
+ --------------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 
+```
 
+```bash
+cd 
+geth --testnet --syncmode "light" --rpc --rpccorsdomain '*' --rpcapi web3,eth,personal,admin,net,db
 
+INFO [09-05|19:38:32.426] Dropping default light client cache      provided=1024 updated=128
+INFO [09-05|19:38:32.428] Maximum peer count                       ETH=0 LES=100 total=50
+INFO [09-05|19:38:32.428] Smartcard socket not found, disabling    err="stat /run/pcscd/pcscd.comm: no such file or directory"
+INFO [09-05|19:38:32.494] Starting peer-to-peer node               instance=Geth/v1.9.3-unstable/linux-amd64/go1.12.7
+INFO [09-05|19:38:32.496] Allocated cache and file handles         database=/home/ethereum-fiap/.ethereum/testnet/geth/lightchaindata cache=64.00MiB handles=524288
+INFO [09-05|19:38:32.701] Persisted trie from memory database      nodes=355 size=50.67KiB time=510.592µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+INFO [09-05|19:38:32.701] Initialised chain configuration          config="{ChainID: 3 Homestead: 0 DAO: <nil> DAOSupport: true EIP150: 0 EIP155: 10 EIP158: 10 Byzantium: 1700000 Constantinople: 4230000 Petersburg: 4939394 Istanbul: <nil> Engine: ethash}"
+INFO [09-05|19:38:32.702] Disk storage enabled for ethash caches   dir=/home/ethereum-fiap/.ethereum/testnet/geth/ethash count=3
+INFO [09-05|19:38:32.702] Disk storage enabled for ethash DAGs     dir=/home/ethereum-fiap/.ethash count=2
+INFO [09-05|19:38:32.787] Added trusted checkpoint                 block=6160383 hash=7d6db6…d0b07d
+INFO [09-05|19:38:32.787] Loaded most recent local header          number=6323250 hash=4503b9…c6c0d7 td=22669098121385181 age=1d20h41m
+INFO [09-05|19:38:32.794] Configured checkpoint registrar          address=0xEF79475013f154E6A65b54cB2742867791bf0B84 signers=5 threshold=2
+INFO [09-05|19:38:32.851] UDP listener up                          net=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@[::]:30303
+WARN [09-05|19:38:32.852] Light client mode is an experimental feature 
+INFO [09-05|19:38:32.857] IPC endpoint opened                      url=/home/ethereum-fiap/.ethereum/testnet/geth.ipc
+INFO [09-05|19:38:32.866] HTTP endpoint opened                     url=http://127.0.0.1:8545 cors=* vhosts=localhost
+INFO [09-05|19:38:32.867] New local node record                    seq=23 id=606ed001a2ff01f1 ip=127.0.0.1 udp=30303 tcp=30303
+INFO [09-05|19:38:32.867] Started P2P networking                   self=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@127.0.0.1:30303
+INFO [09-05|19:38:33.522] Block synchronisation started 
 
+# executando geth attach
+> geth attach http://localhost:8545
+Welcome to the Geth JavaScript console!
 
+instance: Geth/v1.9.3-unstable/linux-amd64/go1.12.7
+at block: 6335894 (Thu, 05 Sep 2019 19:47:08 -03)
+ datadir: /home/ethereum-fiap/.ethereum/testnet
+ modules: admin:1.0 eth:1.0 net:1.0 personal:1.0 rpc:1.0 web3:1.0
 
+> 
 
+```
+
+```bash
+ ______________________________
+< Quando usamos RPC precisamos >
+< pensar em segurança! >
+ -------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+
+## Geth - JSON RPC
+
+```bash
+# listando as contas
+> eth.accounts
+["0xb5ab638c6ffe0ebdd3edaea35724501d0764b776", "0xcd1f55318de39bd2e8d32a7a949ca4bb7c865c88"]
+
+# colocando umas das contas no valor params:
+> curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xb5ab638c6ffe0ebdd3edaea35724501d0764b776", "latest"],"id":1}' http://localhost:8545
+```
+
+* Abra um novo terminal linux
+
+``` bash
+ethereum-fiap@ethereum-fiap:~$ curl -X POST -H "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0xb5ab638c6ffe0ebdd3edaea35724501d0764b776", "latest"],"id":1}' http://localhost:8545
+{"jsonrpc":"2.0","id":1,"result":"0xec4165cd9040000"}
+
+```
+
+```bash
+/ Abra o MetaMask e seleciona a rede     \
+| Localhost 8545 e envie ethers para uma |
+\ conta no geth                          /
+ ----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+## Geth -  RPC + MetaMask
+
+Veja as imagens de como acessar o MetaMask nos slides de número 26-30 da Aula 03:
+
+* FIAP_MBA_Blockchain_Ethereum-Fundamentals_Aula-3
