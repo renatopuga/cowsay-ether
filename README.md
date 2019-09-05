@@ -1,15 +1,17 @@
 # cowsay-ether -  Ethereum Fundamentals - hands on
 FIAP - Ethereum Fundamentals
 
-	< Aula: ETHEREUM FUNDAMENTALS -
-	 Prof. GLAUBER DUARTE MONTEIRO >
-	 -----------------------------
-        \   ^__^
-         \  (oo)\_______
-            (__)\       )\/\
-                ||----w |
-                ||     ||
-	by Renato Puga
+```bash
+< Aula: ETHEREUM FUNDAMENTALS -
+< Prof. GLAUBER DUARTE MONTEIRO >
+ -----------------------------
+     \   ^__^
+      \  (oo)\_______
+         (__)\       )\/\
+            ||----w |
+            ||     ||
+by Renato Puga
+```
 
 ## Slides
 
@@ -358,7 +360,9 @@ Error: authentication needed: password or unlock
     at web3.js:6347:15
     at web3.js:5081:36
     at <anonymous>:1:1
+```
 
+```bash
 #< O Goiaba, usa o Lock Account! >
 # -------------------------------
 #        \   ^__^
@@ -367,6 +371,10 @@ Error: authentication needed: password or unlock
 #                ||----w |
 #                ||     ||
 # ALERT! por seguranca o personal.unlockAccount nao fica no history do terminal
+```
+
+
+```bash
 > personal.unlockAccount(eth.accounts[1],'123')
 > eth.sendTransaction({from:eth.accounts[1],to:eth.accounts[0], value:web3.toWei(100)})
 "0x5dc3e9a6b4a8cb2cf905d57ffff11cfb0d9943a6a334040a65eaf7933eea0b87"
@@ -492,16 +500,18 @@ true
 Crie uma função **depositar** que receba um valor de ether e um endereço e realize a transferência para o endereço:
 
 ```bash
+ _____________________________________
+/ Goiabinha, libere sempre a origem:  \
+| personal.unlockAccount(origem,'123') /
+\-------------------------------------/
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
 
-#/ Goiabinha, libere sempre a origem:  \
-#| personal.unlockAccount(origem,'123') /
-#\-------------------------------------/
-#        \   ^__^
-#         \  (oo)\_______
-#            (__)\       )\/\
-#                ||----w |
-#                ||     ||
-
+```bash
 
 > function depositar (valor, origem, destino) {
 eth.sendTransaction({from:origem,to:destino, value:web3.toWei(valor)});
@@ -556,8 +566,18 @@ INFO [09-03|20:55:27.933] New local node record                    seq=15 id=606
 INFO [09-03|20:55:27.934] IPC endpoint opened                      url=/home/ethereum-fiap/.ethereum/testnet/geth.ipc
 INFO [09-03|20:55:27.940] Started P2P networking                   self=enode://b7cd8b1529aabfbd6e48df969174839e50b0f22c7dcbb8469e7f0d758f1154d0930bb9f7c7f0010f0f9a1d5c76eeb2ce30f7eeba037eaa5eb0286c8307c7d8b1@127.0.0.1:30303
 ...
-# para parar digite Ctrl + C
+```
 
+```bash
+ ______________________________
+< Para fechar o processo acima >
+< digite Ctrl + C >
+ -------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 ```
 
 ### Os principais problemas quando nos aproximamos da Mainnet:
@@ -670,7 +690,7 @@ Podemos verificar qual a altura do bloco com `eth.blockNumber`:
 
 ## Geth - Gerenciamento de Contas
 
-Vá até o MetaMask e copie a chave privada (PERIGO... PERIGO... PERGO).
+Vá até o MetaMask e copie a chave privada (PERIGO... PERIGO... PERIGO).
 
 ```bash
 # copiar a chave privada no MetaMask e copiar a chave privada e salvar no arquivo metamask.key
