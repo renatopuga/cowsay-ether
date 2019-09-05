@@ -955,3 +955,196 @@ ethereum-fiap@ethereum-fiap:~$ curl -X POST -H "Content-Type: application/json" 
 Veja as imagens de como acessar o MetaMask nos slides de número 26-30 da Aula 03:
 
 * FIAP_MBA_Blockchain_Ethereum-Fundamentals_Aula-3
+
+
+## Geth - Projeto 01
+
+Abra um terminal no linux e verifique a versão do node com a opção `--version`:
+
+```bash
+# verificando o node
+node --version
+v8.15.1
+
+# criando diretorio ethereum-web3 no home
+cd
+mkdir ethereum-web3
+cd ethereum-web3
+```
+
+```bash
+ _________________________________
+/ Node é um tecnologia para rodar \
+\ back-end                        /
+ ---------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+
+```bash
+# verificando o node
+node --version
+v8.15.1
+
+# criando diretorio ethereum-web3 no home
+cd
+mkdir ethereum-web3
+cd ethereum-web3
+
+# iniciar o node
+# tecla ENTER para todas as perguntas
+npm init
+
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (ethereum-web3) 
+version: (1.0.0) 
+description: 
+entry point: (index.js) 
+test command: 
+git repository: 
+keywords: 
+author: 
+license: (ISC) 
+About to write to /home/ethereum-fiap/ethereum-web3/package.json:
+
+{
+  "name": "ethereum-web3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this OK? (yes) 
+
+# agora digite code no diretorio atual
+code .
+
+# agora vamos instalar o web3
+npm install web3
+
+npm install web3
+npm ERR! code ENOGIT
+npm ERR! Error while executing:
+npm ERR! undefined ls-remote -h -t ssh://git@github.com/web3-js/WebSocket-Node.git
+npm ERR! 
+npm ERR! undefined
+npm ERR! No git binary found in $PATH
+npm ERR! 
+npm ERR! Failed using git.
+npm ERR! Please check if you have git installed and in your PATH.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/ethereum-fiap/.npm/_logs/2019-09-05T23_38_23_513Z-debug.log
+
+```
+```bash
+ _________________________________
+< Deu erro de Git! Bora instalar? >
+ ---------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+```
+
+```bash
+# instalando o git
+sudo apt install git
+
+[sudo] password for ethereum-fiap: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  brave-keyring linux-headers-4.15.0-45 linux-headers-4.15.0-45-generic linux-image-4.15.0-45-generic linux-modules-4.15.0-45-generic
+  linux-modules-extra-4.15.0-45-generic
+Use 'sudo apt autoremove' to remove them.
+The following additional packages will be installed:
+  git-man liberror-perl
+Suggested packages:
+  git-daemon-run | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-arch git-cvs git-mediawiki git-svn
+The following NEW packages will be installed:
+  git git-man liberror-perl
+0 upgraded, 3 newly installed, 0 to remove and 87 not upgraded.
+Need to get 3.932 kB of archives.
+After this operation, 25,6 MB of additional disk space will be used.
+Do you want to continue? [Y/n] Y
+Get:1 http://br.archive.ubuntu.com/ubuntu xenial/main amd64 liberror-perl all 0.17-1.2 [19,6 kB]
+Get:2 http://br.archive.ubuntu.com/ubuntu xenial-updates/main amd64 git-man all 1:2.7.4-0ubuntu1.6 [736 kB]
+Get:3 http://br.archive.ubuntu.com/ubuntu xenial-updates/main amd64 git amd64 1:2.7.4-0ubuntu1.6 [3.176 kB]
+Fetched 3.932 kB in 0s (4.005 kB/s)
+Selecting previously unselected package liberror-perl.
+(Reading database ... 253870 files and directories currently installed.)
+Preparing to unpack .../liberror-perl_0.17-1.2_all.deb ...
+Unpacking liberror-perl (0.17-1.2) ...
+Selecting previously unselected package git-man.
+Preparing to unpack .../git-man_1%3a2.7.4-0ubuntu1.6_all.deb ...
+Unpacking git-man (1:2.7.4-0ubuntu1.6) ...
+Selecting previously unselected package git.
+Preparing to unpack .../git_1%3a2.7.4-0ubuntu1.6_amd64.deb ...
+Unpacking git (1:2.7.4-0ubuntu1.6) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up liberror-perl (0.17-1.2) ...
+Setting up git-man (1:2.7.4-0ubuntu1.6) ...
+Setting up git (1:2.7.4-0ubuntu1.6) ...
+
+# agora com o git instalado vamos instalar o web3 com o npm
+npm install web3
+
+> sha3@1.2.3 install /home/ethereum-fiap/ethereum-web3/node_modules/sha3
+> node-gyp rebuild
+
+make: Entering directory '/home/ethereum-fiap/ethereum-web3/node_modules/sha3/build'
+  CXX(target) Release/obj.target/sha3/src/addon.o
+  CXX(target) Release/obj.target/sha3/src/displayIntermediateValues.o
+  CXX(target) Release/obj.target/sha3/src/KeccakF-1600-reference.o
+  CXX(target) Release/obj.target/sha3/src/KeccakNISTInterface.o
+  CXX(target) Release/obj.target/sha3/src/KeccakSponge.o
+  SOLINK_MODULE(target) Release/obj.target/sha3.node
+  COPY Release/sha3.node
+make: Leaving directory '/home/ethereum-fiap/ethereum-web3/node_modules/sha3/build'
+
+> websocket@1.0.29 install /home/ethereum-fiap/ethereum-web3/node_modules/websocket
+> (node-gyp rebuild 2> builderror.log) || (exit 0)
+
+make: Entering directory '/home/ethereum-fiap/ethereum-web3/node_modules/websocket/build'
+  CXX(target) Release/obj.target/bufferutil/src/bufferutil.o
+  SOLINK_MODULE(target) Release/obj.target/bufferutil.node
+  COPY Release/bufferutil.node
+  CXX(target) Release/obj.target/validation/src/validation.o
+  SOLINK_MODULE(target) Release/obj.target/validation.node
+  COPY Release/validation.node
+make: Leaving directory '/home/ethereum-fiap/ethereum-web3/node_modules/websocket/build'
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN ethereum-web3@1.0.0 No description
+npm WARN ethereum-web3@1.0.0 No repository field.
+
++ web3@1.2.1
+added 342 packages from 219 contributors and audited 30411 packages in 29.546s
+found 1 low severity vulnerability
+  run `npm audit fix` to fix them, or `npm audit` for details
+
+```
+
+	
+
