@@ -1146,5 +1146,70 @@ found 1 low severity vulnerability
 
 ```
 
-	
+## Geth - balance.js
 
+Copie o último slide da Aula 04, crie um arquivo novo no Visual Studio Code com o nome de `balance.js` e salve o código:
+
+```java
+const  args  =  process.argv.slice(2)
+const  Web3  =  require('web3');
+const  web3  =  new  Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+
+if(!args[0]){
+console.log("Passe um endereço para consulta")
+return
+}
+web3.eth.getBalance(args[0])
+.then(balance  => {console.log(`Saldo de ${args[0]}: `  +  web3.utils.fromWei(balance))
+})
+.catch( err  =>  console.error(err))
+```
+
+* Agora no console do linux execute o balance.js com o comando node:
+
+
+```bash
+node balance.js 
+/home/ethereum-fiap/ethereum-web3/balance.js:6
+console.log('Passe um endereço para consulta’)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Invalid or unexpected token
+    at createScript (vm.js:80:10)
+    at Object.runInThisContext (vm.js:139:10)
+    at Module._compile (module.js:617:28)
+    at Object.Module._extensions..js (module.js:664:10)
+    at Module.load (module.js:566:32)
+    at tryModuleLoad (module.js:506:12)
+    at Function.Module._load (module.js:498:3)
+    at Function.Module.runMain (module.js:694:10)
+    at startup (bootstrap_node.js:204:16)
+    at bootstrap_node.js:625:3
+```
+
+```bash
+ _______________________________________
+/ Pegadinha da aspa simple do Glauber!  \
+\ Edita o código, salva e roda de novo. /
+ ---------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+	
+```bash
+# no terminal do linux no diretorio ethereum-web3 rode o script balance.js
+node balance.js 
+
+You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
+Passe um endereço para consulta
+
+# rodando com um endereco valido
+node balance.js 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776
+You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
+Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0661
+
+```
