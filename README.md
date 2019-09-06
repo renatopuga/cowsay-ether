@@ -1226,3 +1226,82 @@ Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0661
                 ||----w |
                 ||     ||
 ```
+
+
+## sendEther.js 
+Objetivo desse script é enviar ether para dois endereços diferentes.
+
+Com o ambiente geth rpc web3 rodando, abra um terminal no diretorio ethereum-web3, crie no Visual Studio Code um novo arquivo chamado `sendEther.js` e com o código abaixo eu espero enviar ethers para um endereço meu hardcode.
+
+* Em uma nova aba terminal do linux
+
+```bash
+# voltando para o home
+cd
+
+# acessando o diretorio ethereum-web3
+cd ethereum-web3
+
+# executando o script sendEther.js
+
+node sendEther.js 0.032 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776 0x35b4439277e3e6543e08e7f908d9087110c7921b
+You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
+Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0981
+Saldo de 0x35b4439277e3e6543e08e7f908d9087110c7921b: 0.032
+
+```
+
+```bash
+ ___________________________
+/ Pensa em um código porco! \
+ ----------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+
+
+```bash
+const args = process.argv.slice(2)
+const Web3 = require('web3');
+const web3 = new Web3(new
+Web3.providers.HttpProvider('http://localhost:8545'));
+
+if(!args[0] && !args[1] && !$args[2]){   
+console.log("Passe na ordem: 1 valor (ether) e 2 Endereços para receber o deposito")
+return
+}
+
+// funcao para depositar
+function depositar (valor, origem, destino) {
+    web3.eth.sendTransaction({from:origem,to:destino, value:web3.utils.toWei(valor)})
+  //     console.log(web3.utils.fromWei(web3.eth.getBalance(destino),"ether"));
+}
+
+
+// unlockAccount
+web3.eth.personal.unlockAccount("0xCd1f55318De39Bd2e8D32A7A949CA4Bb7c865c88","123",600);
+
+// enviar para as contas usando a funcao   
+depositar(args[0],"0xCd1f55318De39Bd2e8D32A7A949CA4Bb7c865c88",args[1])
+depositar(args[0],"0xCd1f55318De39Bd2e8D32A7A949CA4Bb7c865c88",args[2])
+
+// balanco da primeira conta
+web3.eth.getBalance(args[1])
+.then(balance => {
+console.log(`Saldo de ${args[1]}: ` + web3.utils.fromWei(balance))
+})
+.catch( err => console.error(err))
+
+// balanco da segunda conta
+web3.eth.getBalance(args[2])
+.then(balance => {
+console.log(`Saldo de ${args[2]}: ` + web3.utils.fromWei(balance))
+})
+.catch( err => console.error(err))
+```
+
+
