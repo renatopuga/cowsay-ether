@@ -1311,6 +1311,7 @@ Saldo de 0x35b4439277e3e6543e08e7f908d9087110c7921b: 0.032
 
 ```
 
+* code sendEther.js
 
 ```bash
 const args = process.argv.slice(2)
