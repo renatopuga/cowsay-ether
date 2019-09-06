@@ -1228,8 +1228,51 @@ Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0661
 ```
 
 
-## sendEther.js 
-Objetivo desse script é enviar ether para dois endereços diferentes.
+## sendEther.js - trabalho
+Objetivo desse trabalho é desenvolver um script para enviar ether para dois endereços diferentes.
+
+Para vencer o problema de `unlockAccounts` eu tive que parar o `geth rpc web3` e o `geth attach` que estava rodando e adicionar mais uma opção `--allow-insecure-unlock`. Feito isso, podemos executar novamente o geth e testar o script sendEther.js.
+
+* Aba 1 do terminal linux
+
+```bash
+# rodando com a opcao --allow-insecure-unlock
+ geth --testnet --syncmode "light" --rpc --rpccorsdomain '*' --rpcapi web3,eth,personal,admin,net,db --allow-insecure-unlock
+```
+
+```bash
+ _________________________________________
+/ Sending your account password over an   \
+| unsecured HTTP RPC connection is highly |
+\ unsecure                                /
+ -----------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+
+```
+
+* Aba 2 do terminal linux
+
+```bash
+# rodando novamente o geth attach
+geth attach http://localhost:8545
+
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.9.3-unstable/linux-amd64/go1.12.7
+at block: 6336586 (Thu, 05 Sep 2019 22:19:23 -03)
+ datadir: /home/ethereum-fiap/.ethereum/testnet
+ modules: admin:1.0 eth:1.0 net:1.0 personal:1.0 rpc:1.0 web3:1.0
+
+# unloack para o endereço
+> personal.unlockAccount("0xcd1f55318de39bd2e8d32a7a949ca4bb7c865c88", "123", 600)
+true
+
+```
+
 
 Com o ambiente geth rpc web3 rodando, abra um terminal no diretorio ethereum-web3, crie no Visual Studio Code um novo arquivo chamado `sendEther.js` e com o código abaixo eu espero enviar ethers para um endereço meu hardcode.
 
