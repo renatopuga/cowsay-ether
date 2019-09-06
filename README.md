@@ -1243,8 +1243,13 @@ cd
 cd ethereum-web3
 
 # executando o script sendEther.js
+# valor: 0.032
+# destino 1: 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776
+# destino 2: 0x35b4439277e3e6543e08e7f908d9087110c7921b
 
 node sendEther.js 0.032 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776 0x35b4439277e3e6543e08e7f908d9087110c7921b
+
+
 You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
 Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0981
 Saldo de 0x35b4439277e3e6543e08e7f908d9087110c7921b: 0.032
