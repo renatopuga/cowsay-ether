@@ -1150,6 +1150,7 @@ found 1 low severity vulnerability
 
 Copie o último slide da Aula 04, crie um arquivo novo no Visual Studio Code com o nome de `balance.js` e salve o código:
 
+* code balance.js
 ```java
 const  args  =  process.argv.slice(2)
 const  Web3  =  require('web3');
@@ -1212,4 +1213,16 @@ node balance.js 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776
 You can improve web3's peformance when running Node.js versions older than 10.5.0 by installing the (deprecated) scrypt package in your project
 Saldo de 0xb5ab638c6ffe0ebdd3edaea35724501d0764b776: 1.0661
 
+```
+
+```bash
+ ________________________________
+/ O Visual Studio Code não salva \
+\ automaticamente. Fique atento! /
+ --------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
 ```
