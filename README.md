@@ -49,7 +49,8 @@ sudo apt install htop
 cd
 cd app
 
-# download do go
+# download do go bin (linux)
+# download do go bin (Mac) https://dl.google.com/go/go1.12.9.darwin-amd64.tar.gz
 wget https://dl.google.com/go/go1.12.7.linux-amd64.tar.gz
 
 # decompactar com tar
